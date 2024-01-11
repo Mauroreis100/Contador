@@ -2,6 +2,7 @@ import json
 import os
 from objectivo import objectivo as item
 from tkinter import *
+from csv import DictWriter
 import csv
 objectivosPath="M:\\PRJCTS\\Contador\\objectivos.txt"
 
@@ -15,8 +16,21 @@ if os.path.exists(objectivosPath):
 else:
     print("Path Problems")
 
-objectivos=[['Nome','Actual','Inicial','Final']]
+objectivos=['Nome','Actual','Inicial','Final']
 objectivos_nr=0
+dict = {'Nome':"Mauro", 'Actual': 2,'Inicial':2, 'Final': 5532}
+with open('objectivos.csv', 'a') as f_object:
+ 
+    # Pass the file object and a list
+    # of column names to DictWriter()
+    # You will get a object of DictWriter
+    dictwriter_object = DictWriter(f_object, fieldnames=objectivos)
+ 
+    # Pass the dictionary as an argument to the Writerow()
+    dictwriter_object.writerow(dict)
+ 
+    # Close the file object
+    f_object.close()
 try:
     with open('objectivos.csv', mode='r') as file:
         csvFile = csv.reader(file)
@@ -63,8 +77,8 @@ def criar():
 #     # writing headers (field names)  
 #     writer.writeheader()
 
-def finalizar(nome_item):
-    objectivos.append([nome_item])
+def finalizar(nome):
+    objectivos.append([nome])
     print(objectivos)
     
     # with open('objectivos.csv','w') as file:
