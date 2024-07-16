@@ -1,1 +1,0 @@
-<bound method objectivo.__str__ of <objectivo.objectivo object at 0x000001D27ACE1310>>

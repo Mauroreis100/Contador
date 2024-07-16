@@ -1,9 +1,51 @@
 import json
 import os
-from objectivo import objectivo as item
+from acontecimento import acontecimento as acontecimento
+acontecimentos=[]
+accao=""
+menu=""
+while menu !=0:
+    menu=input("--------MENU--------\n1. Adicionar acontecimento\n2. Editar Acontecimento\n3. Ver todos os Acontecimentos Guardados\n4. Eliminar Acontecimentos\n0. Sair do programa\n>")
+    match menu:
+        case "1":
+            nome=input("Escreva o nome do novo acontecimento: ")
+            acontecimentos.append(acontecimento(nome,0))
+        case "2":
+            continue
+        case "3":
+            print("Código |\t Nome \t | Quantidade")
+            for i in acontecimentos:
+                print(i)
+            a=int(input("Escreva o código do acontecimento que pretende incrementar ou diminuir\nOu -1 para sair"))
+            if a!=-1:
+                while accao != "0":
+                    accao=input(f"Pressione + para aumentar e - para diminuir e . para especificar uma quantiidade a somar(test){acontecimentos[a].nome}: \n")
+                    match accao:
+                        case "+":
+                            acontecimentos[a].incrementar(1)
+                            print(acontecimentos[a])
+                        case "-":
+                            acontecimentos[a].decrementar(1)
+                            print(acontecimentos[a])
+                        case '.':
+                            soma=int(input("Insira o valor que pretende somar"))
+                            acontecimentos[a].incrementar(soma)
+                            print(acontecimentos[a])
+                        case "0":
+                            exit
+                            continue
+        case "4":
+            continue
+        case "0":
+            break
+
+ 
+
+''''
 from tkinter import *
 from csv import DictWriter
 import csv
+
 objectivosPath="M:\\PRJCTS\\Contador\\objectivos.txt"
 
 window=Tk()
@@ -95,3 +137,5 @@ bt_Criar.pack()
 window.mainloop()
 
 
+
+'''''
